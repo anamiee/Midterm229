@@ -1,87 +1,94 @@
-```jsx
 import React, { useState } from 'react';
 
 function ProductForm() {
- const [product, setProduct] = useState({
-   name: '',
-   description: '',
-   category: '',
-   quantity: '',
-   price: '',
- });
+  // Define state variables for the form fields
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [price, setPrice] = useState('');
 
- const handleChange = (e) => {
-   const { name, value } = e.target;
-   setProduct({
-     ...product,
-     [name]: value,
-   });
- };
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
- const handleSubmit = (e) => {
-   e.preventDefault();
-   // You can handle the form submission logic here
-   console.log('Submitted:', product);
- };
+    // You can use the form data here (e.g., submit it to an API)
+    console.log({
+      name,
+      description,
+      category,
+      quantity,
+      price,
+    });
 
- return (
-   <form onSubmit={handleSubmit}>
-     <label htmlFor="name">Name</label>
-     <input
-       type="text"
-       name="name"
-       id="name"
-       value={product.name}
-       onChange={handleChange}
-     />
+    // Clear the form fields
+    setName('');
+    setDescription('');
+    setCategory('');
+    setQuantity('');
+    setPrice('');
+  };
 
-     <label htmlFor="description">Description</label>
-     <input
-       type="text"
-       name="description"
-       id="description"
-       value={product.description}
-       onChange={handleChange}
-     />
+  // Function to handle form cancellation
+  const handleCancel = () => {
+    // Clear the form fields
+    setName('');
+    setDescription('');
+    setCategory('');
+    setQuantity('');
+    setPrice('');
+  };
 
-     <label htmlFor="category">Category</label>
-     <input
-       type="text"
-       name="category"
-       id="category"
-       value={product.category}
-       onChange={handleChange}
-     />
-
-     <label htmlFor="quantity">Quantity</label>
-     <input
-       type="number"
-       name="quantity"
-       id="quantity"
-       value={product.quantity}
-       onChange={handleChange}
-     />
-
-     <label htmlFor="price">Price</label>
-     <input
-       type="number"
-       name="price"
-       id="price"
-       value={product.price}
-       onChange={handleChange}
-     />
-
-     <button type="submit">SUBMIT</button>
-     <button type="button" onClick={() => setProduct({
-       name: '',
-       description: '',
-       category: '',
-       quantity: '',
-       price: '',
-     })}>CANCEL</button>
-   </form>
- );
+  return (
+    <div>
+      <h1>New Product</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Name</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Description</label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Category</label>
+          <input
+            type="text"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Quantity</label>
+          <input
+            type="number"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Price</label>
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </div>
+        <div>
+          <button type="submit">SUBMIT</button>
+          <button type="button" onClick={handleCancel}>CANCEL</button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default ProductForm;
-```
