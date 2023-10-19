@@ -1,0 +1,87 @@
+```jsx
+import React, { useState } from 'react';
+
+function ProductForm() {
+ const [product, setProduct] = useState({
+   name: '',
+   description: '',
+   category: '',
+   quantity: '',
+   price: '',
+ });
+
+ const handleChange = (e) => {
+   const { name, value } = e.target;
+   setProduct({
+     ...product,
+     [name]: value,
+   });
+ };
+
+ const handleSubmit = (e) => {
+   e.preventDefault();
+   // You can handle the form submission logic here
+   console.log('Submitted:', product);
+ };
+
+ return (
+   <form onSubmit={handleSubmit}>
+     <label htmlFor="name">Name</label>
+     <input
+       type="text"
+       name="name"
+       id="name"
+       value={product.name}
+       onChange={handleChange}
+     />
+
+     <label htmlFor="description">Description</label>
+     <input
+       type="text"
+       name="description"
+       id="description"
+       value={product.description}
+       onChange={handleChange}
+     />
+
+     <label htmlFor="category">Category</label>
+     <input
+       type="text"
+       name="category"
+       id="category"
+       value={product.category}
+       onChange={handleChange}
+     />
+
+     <label htmlFor="quantity">Quantity</label>
+     <input
+       type="number"
+       name="quantity"
+       id="quantity"
+       value={product.quantity}
+       onChange={handleChange}
+     />
+
+     <label htmlFor="price">Price</label>
+     <input
+       type="number"
+       name="price"
+       id="price"
+       value={product.price}
+       onChange={handleChange}
+     />
+
+     <button type="submit">SUBMIT</button>
+     <button type="button" onClick={() => setProduct({
+       name: '',
+       description: '',
+       category: '',
+       quantity: '',
+       price: '',
+     })}>CANCEL</button>
+   </form>
+ );
+}
+
+export default ProductForm;
+```
